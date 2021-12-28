@@ -1,0 +1,7 @@
+{
+  "deno.enable": true,
+  "deno.config": "tsconfig.json",
+  "deno.suggest.imports.hosts": {
+    "https://deno.land": false
+  }
+}
