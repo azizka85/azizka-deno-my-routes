@@ -8,7 +8,11 @@ export function getQueryParameters(
   const parameters: string[] = [];
 
   for(let key of Object.keys(query)) {
-    parameters.push(`${key}=${query[key]}`);
+    if(query[key]) {
+      parameters.push(`${key}=${query[key]}`);
+    } else {
+      parameters.push(key);
+    }
   }
 
   return parameters.join('&');  

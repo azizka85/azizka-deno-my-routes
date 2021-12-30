@@ -1,0 +1,11 @@
+<div data-layout="main-layout">
+  <% if(data.content) { %>
+    <%- 
+      await partials[data.content]({ 
+        data: data.contentData, 
+        partials,  
+        helpers
+      }) 
+    %> 
+  <% } %>
+</div>

@@ -1,0 +1,10 @@
+<div data-page="signup-page">
+  <h6><%= helpers.tr('Sign Up') %></h6>
+  <%- 
+    await partials['auth-service-component']({
+      data,
+      partials,
+      helpers
+    }) 
+  %> 
+</div>
