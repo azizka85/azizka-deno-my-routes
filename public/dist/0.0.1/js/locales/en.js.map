@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../src/locales/en.ts"],
+  "sourcesContent": ["export default {\n  values: {\n    \"My Routes\": \"My Routes\",\n    \"Sign In\": \"Sign In\",\n    \"Sign Up\": \"Sign Up\",\n    \"Sign In/Up\": \"Sign In/Up\",\n    \"Sign Out\": \"Sign Out\",\n    \"Email required\": \"Email required\",\n    \"Name\": \"Name\",\n    \"Name required\": \"Name required\",\n    \"Password\": \"Password\",    \n    \"Password required\": \"Password required\",\n    \"Cancel\": \"Cancel\",\n    \"Or use the service\": \"Or use the service\",\n    \"Auth service\": \"Auth service\"\n  }\n};\n"],
+  "mappings": ";AAAA,IAAO,aAAQ;AAAA,EACb,QAAQ;AAAA,IACN,aAAa;AAAA,IACb,WAAW;AAAA,IACX,WAAW;AAAA,IACX,cAAc;AAAA,IACd,YAAY;AAAA,IACZ,kBAAkB;AAAA,IAClB,QAAQ;AAAA,IACR,iBAAiB;AAAA,IACjB,YAAY;AAAA,IACZ,qBAAqB;AAAA,IACrB,UAAU;AAAA,IACV,sBAAsB;AAAA,IACtB,gBAAgB;AAAA;AAAA;",
+  "names": []
+}

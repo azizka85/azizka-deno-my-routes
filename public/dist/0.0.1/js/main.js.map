@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/client/main.ts"],
+  "sourcesContent": ["window.addEventListener('DOMContentLoaded', () => {\n  const btn = document.querySelector('[data-button=\"fetch\"]');\n\n  btn?.addEventListener('click', async () => {\n    const response = await fetch('/ru?ajax=1');\n    const content = await response.text();\n\n    console.log(content);    \n  });\n});\n"],
+  "mappings": ";AAAA,OAAO,iBAAiB,oBAAoB,MAAM;AAChD,QAAM,MAAM,SAAS,cAAc;AAEnC,OAAK,iBAAiB,SAAS,YAAY;AACzC,UAAM,WAAW,MAAM,MAAM;AAC7B,UAAM,UAAU,MAAM,SAAS;AAE/B,YAAQ,IAAI;AAAA;AAAA;",
+  "names": []
+}

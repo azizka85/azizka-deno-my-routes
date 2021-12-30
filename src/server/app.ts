@@ -39,19 +39,23 @@ const app = new Router<RouteOptions, RouteState>({
         page.fragment
       );         
 
-      let file: Deno.File | null = null;
-
       try {
-        file = await Deno.open(path);                
-      } catch {}
+        const stat = await Deno.stat(path);
 
-      if(file) {
-        const readableStream = readableStreamFromReader(file);
-
-        page.state.response = new Response(readableStream);
-
-        return true;
-      }
+        if(stat.isFile) {
+          const readableStream = readableStreamFromReader(
+            await Deno.open(path)
+          );
+  
+          page.state.response = new Response(readableStream);
+  
+          if(path.endsWith('.js')) {
+            page.state.response.headers.set('Content-Type', 'application/javascript; charset=UTF-8');
+          }
+  
+          return true;
+        }
+      } catch { }
     }
 
     return false;
