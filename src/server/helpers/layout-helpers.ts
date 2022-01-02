@@ -1,7 +1,8 @@
-import { Params } from 'https://deno.land/x/dejs@0.10.2/mod.ts';
+import { Params } from 'dejs/mod.ts';
 
-import { Page } from 'https://deno.land/x/azizka_deno_router@1.1.0/src/data/page.ts';
-import { Translator } from 'https://deno.land/x/azizka_deno_i18n@1.0.0/src/translator.ts';
+import { Page } from 'router/src/data/page.ts';
+
+import { Translator } from 'i18n/src/translator.ts';
 
 import { RouteOptions } from '../data/route-options.ts';
 import { RouteState } from '../data/route-state.ts';

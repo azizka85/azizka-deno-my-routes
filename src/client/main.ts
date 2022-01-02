@@ -1,10 +1,57 @@
+import { LoaderPage } from './views/pages/loader-page.ts';
+
+import { loadPage } from './helpers/view-helpers.ts';
+
+import { localeRoute } from '../utils.ts';
+
+import { router, routeNavigator } from './globals.ts';
+import { DEFAULT_LANGUAGE } from '../globals.ts';
+
 window.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('[data-button="fetch"]');
+  let firstTime = true;    
 
-  btn?.addEventListener('click', async () => {
-    const response = await fetch('/ru?ajax=1');
-    const content = await response.text();
+  LoaderPage.instance.init(null, firstTime);
 
-    console.log(content);    
-  });
+  router.addRoutes([{
+    rule: `${localeRoute}/?`,
+    async handler(page) {
+      await loadPage(
+        page.match?.[0] || DEFAULT_LANGUAGE,
+        page, 'home-page', 
+        ['main-layout'],
+        firstTime
+      );
+    }
+  }, {
+    rule: `${localeRoute}/?sign-in`,
+    async handler(page) {
+      await loadPage(
+        page.match?.[0] || DEFAULT_LANGUAGE,
+        page, 
+        'sign-in-page', 
+        [], 
+        firstTime
+      );
+    }
+  }, {
+    rule: `${localeRoute}/?sign-up`,
+    async handler(page) {
+      await loadPage(
+        page.match?.[0] || DEFAULT_LANGUAGE,
+        page, 
+        'sign-up-page', 
+        [], 
+        firstTime
+      );
+    }
+  }]);
+
+  routeNavigator.addUriListener();
+
+  router
+    .processUrl(routeNavigator.fragment, routeNavigator.query)
+    .catch(
+      reason => console.error(reason)      
+    )
+    .finally(() => firstTime = false);
 });

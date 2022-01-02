@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/client/data/scroll.ts"],
+  "sourcesContent": ["export const ScrollActionTop = 'scroll-top';\nexport const ScrollActionTo = 'scroll-to';\n\nexport const ScrollEventType = 'content-scrolled';\n\nexport interface ScrollEventData {\n  currScroll: number;\n  prevScroll: number;\n}\n\nexport const SCROLL_THRESHOLD = 5;\n"],
+  "mappings": ";AAAO,IAAM,kBAAkB;AACxB,IAAM,iBAAiB;AAEvB,IAAM,kBAAkB;AAOxB,IAAM,mBAAmB;",
+  "names": []
+}

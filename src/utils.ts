@@ -1,4 +1,4 @@
-import { trimSlashes } from 'https://deno.land/x/azizka_deno_router@1.1.0/src/utils.ts';
+import { trimSlashes } from 'router/src/utils.ts';
 
 import { LANGUAGES } from "./globals.ts";
 

@@ -1,8 +1,9 @@
-import { fromFileUrl, join, dirname } from 'https://deno.land/std@0.119.0/path/mod.ts';
-import { readableStreamFromReader } from "https://deno.land/std@0.119.0/streams/mod.ts";
-import { Status } from "https://deno.land/std/http/http_status.ts";
+import { Status } from 'http/http_status.ts';
 
-import { Router } from 'https://deno.land/x/azizka_deno_router@1.2.0/src/router.ts';
+import { fromFileUrl, join, dirname } from 'path/mod.ts';
+import { readableStreamFromReader } from 'streams/conversion.ts';
+
+import { Router } from 'router/src/router.ts';
 
 import { RouteOptions } from './data/route-options.ts';
 import { RouteState } from './data/route-state.ts';

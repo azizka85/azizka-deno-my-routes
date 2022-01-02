@@ -1,4 +1,4 @@
-import { trimSlashes, parseQuery } from 'https://deno.land/x/azizka_deno_router@1.1.0/src/utils.ts';
+import { trimSlashes, parseQuery } from 'router/src/utils.ts';
 
 export function fragment(path: string, root: string) {
   let value = decodeURI(path);

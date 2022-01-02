@@ -1,8 +1,8 @@
+import { Translator } from 'i18n/src/translator.ts';
+
 import enValues from '../../locales/en.ts';
 import ruValues from '../../locales/ru.ts';
 import kzValues from '../../locales/kz.ts';
-
-import { Translator } from 'https://deno.land/x/azizka_deno_i18n@1.0.0/src/translator.ts';
 
 export const locales: {
   [key: string]: Translator

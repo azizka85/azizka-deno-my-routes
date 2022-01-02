@@ -1,4 +1,4 @@
-import { Route } from 'https://deno.land/x/azizka_deno_router@1.1.0/src/data/route.ts';
+import { Route } from 'router/src/data/route.ts';
 
 import { RouteOptions } from '../data/route-options.ts';
 import { RouteState } from '../data/route-state.ts';

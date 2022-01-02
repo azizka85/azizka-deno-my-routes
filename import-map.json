@@ -1,0 +1,15 @@
+{
+  "imports": {    
+    "path/": "https://deno.land/std@0.119.0/path/",
+    "streams/": "https://deno.land/std@0.119.0/streams/",
+    "http/": "https://deno.land/std@0.119.0/http/",    
+
+    "esbuild/": "https://deno.land/x/esbuild@v0.14.9/",
+    "esbuild-import/": "https://deno.land/x/azizka_esbuild_plugin_import@1.0.0/",
+
+    "dejs/": "https://deno.land/x/dejs@0.10.2/",
+
+    "router/": "https://deno.land/x/azizka_deno_router@1.2.0/",
+    "i18n/": "https://deno.land/x/azizka_deno_i18n@1.1.0/"
+  }
+}

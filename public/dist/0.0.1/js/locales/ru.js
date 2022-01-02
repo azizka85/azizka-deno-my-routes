@@ -1,3 +1,5 @@
+import "../chunk-T2T6Q22Z.js";
+
 // src/locales/ru.ts
 var ru_default = {
   values: {

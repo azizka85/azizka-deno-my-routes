@@ -1,6 +1,6 @@
-import { Status } from "https://deno.land/std/http/http_status.ts";
+import { Status } from 'std/http/http_status.ts';
 
-import { Page } from 'https://deno.land/x/azizka_deno_router@1.1.0/src/data/page.ts';
+import { Page } from 'router/src/data/page.ts';
 
 import { RouteOptions } from '../../data/route-options.ts';
 import { RouteState } from '../../data/route-state.ts';

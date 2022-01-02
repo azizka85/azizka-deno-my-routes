@@ -1,6 +1,6 @@
-import { fromFileUrl, join, dirname } from 'https://deno.land/std@0.119.0/path/mod.ts';
+import { fromFileUrl, join, dirname } from 'path/mod.ts';
 
-import { compile } from 'https://deno.land/x/dejs@0.10.2/mod.ts';
+import { compile } from 'dejs/mod.ts';
 
 export default await compile(
   await Deno.open(
