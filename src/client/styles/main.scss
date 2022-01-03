@@ -1,3 +1,7 @@
-body {
-  background-color: azure;
-}
+@use './app-bar/styles.scss' as app-bar-styles;
+@use './drawer/styles.scss' as drawer-styles;
+@use './list/styles.scss' as list-styles;
+@use './search/styles.scss' as search-styles;
+@use './loader/styles.scss' as loader-styles;
+@use './splash/styles.scss' as splash-styles;
+@use './general/styles.scss' as general-styles;

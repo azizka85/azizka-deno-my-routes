@@ -1,4 +1,4 @@
-import { Status } from 'std/http/http_status.ts';
+import { Status } from 'http/http_status.ts';
 
 import { Page } from 'router/src/data/page.ts';
 
@@ -48,7 +48,11 @@ export default {
       body: params
     });
 
-    const responseData = await response.json();    
+    const responseData = await response.json();   
+    
+    const result = {
+      ...responseData
+    };
 
     if(responseData.access_token) {
       const userResponse = await fetch(githubUserInfoUrl, {
@@ -56,11 +60,20 @@ export default {
       });
 
       const userData = await userResponse.json();
+
+      result['user'] = userData;
       
     } else {
       
     }
 
-    return new Response();
+    return new Response(
+      JSON.stringify(result), 
+      {
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        }
+      }
+    );
   }
 };

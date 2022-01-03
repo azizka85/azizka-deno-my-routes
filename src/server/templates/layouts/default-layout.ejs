@@ -9,15 +9,30 @@
   <link rel="stylesheet" href="<%= data.rootLink %>dist/<%= data.version %>/css/main.css">
 </head>
 <body>
-  <% if(data.content) { %>
+  <div class="splash">
+    <div class="loader" data-page="loader-page">
+      <div class="loader-container">
+        <img src="/favicon.png">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const splashElem = document.querySelector('.splash');
+
+    splashElem?.classList.add('splash-open');
+  </script>
+  <% if(data.content) { %> 
     <%- 
-      await partials[data.content]({ 
-        data: data.contentData, 
-        partials,  
+      await partials[data.content]({
+        data: data.contentData,
+        partials,
         helpers
       }) 
     %> 
-  <% } %> 
-  <script src="<%= data.rootLink %>dist/<%= data.version %>/js/main.js" type="module"></script>
+  <% } %>     
+  <script src="/dist/<%= data.version %>/js/main.js" type="module"></script>
 </body>
 </html>

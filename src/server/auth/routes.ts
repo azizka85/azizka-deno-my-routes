@@ -34,3 +34,5 @@ routes.push({
     }
   }
 });
+
+export default routes;

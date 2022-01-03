@@ -1,7 +1,6 @@
 import { Status } from 'http/http_status.ts';
 
 import { fromFileUrl, join, dirname } from 'path/mod.ts';
-import { readableStreamFromReader } from 'streams/conversion.ts';
 
 import { Router } from 'router/src/router.ts';
 
@@ -13,7 +12,13 @@ import homeRoutes from './home/routes.ts';
 import signInRoutes from './sign-in/routes.ts';
 import signUpRoutes from './sign-up/routes.ts';
 
+import authRoutes from './auth/routes.ts';
+
+import { checkStaticResponse } from './utils.ts';
+
 import { PAGE_ROOT } from '../globals.ts';
+
+import { dev } from './init-environment.ts';
 
 const app = new Router<RouteOptions, RouteState>({
   root: PAGE_ROOT,
@@ -40,23 +45,23 @@ const app = new Router<RouteOptions, RouteState>({
         page.fragment
       );         
 
-      try {
-        const stat = await Deno.stat(path);
+      if(await checkStaticResponse(page, path))          {
+        return true;
+      }
 
-        if(stat.isFile) {
-          const readableStream = readableStreamFromReader(
-            await Deno.open(path)
-          );
-  
-          page.state.response = new Response(readableStream);
-  
-          if(path.endsWith('.js')) {
-            page.state.response.headers.set('Content-Type', 'application/javascript; charset=UTF-8');
-          }
-  
+      if(dev) {
+        const sourcePath = join(
+          dirname(
+            fromFileUrl(import.meta.url)
+          ), 
+          '../..', 
+          page.fragment
+        );  
+
+        if(await checkStaticResponse(page, sourcePath)) {
           return true;
         }
-      } catch { }
+      }
     }
 
     return false;
@@ -67,5 +72,7 @@ app.addRoutes(homeRoutes);
 
 app.addRoutes(signInRoutes);
 app.addRoutes(signUpRoutes);
+
+app.addRoutes(authRoutes);
 
 export default app;

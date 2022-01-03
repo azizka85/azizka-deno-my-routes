@@ -1,0 +1,85 @@
+@use '../functions' as global-functions;
+
+@use '../theme' as global-theme;
+
+@use '../variables' as global-variables;
+@use '../app-bar/variables' as app-bar-variables;
+@use './variables';
+
+.search { 
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: variables.$top;
+  width: calc(100% - variables.$margin-max);
+  max-width: variables.$max-width;
+  padding: variables.$padding;
+  margin: auto;
+  border-radius: variables.$border-radius;  
+  background-color: global-functions.property(opacity-30-background, global-theme.$opacity-30-background);
+  transition: color 200ms linear, background-color 200ms linear, width 200ms linear;    
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;    
+  }
+
+  &-input {
+    flex: 1;
+    color: inherit;
+    background-color: rgba(#000000, 0);
+    border: none;
+    outline: none;
+  }
+
+  &-icon {
+    width: variables.$icon-size;
+    height: variables.$icon-size;           
+
+    &-left {
+      order: -1;      
+      display: none;
+      cursor: pointer;
+      margin: 
+        variables.$icon-margin-vertical
+        variables.$icon-margin-horizontal; 
+    }
+
+    &-right {
+      order: 1;     
+      display: none; 
+      cursor: pointer;
+      margin: 
+        variables.$icon-margin-vertical
+        variables.$icon-margin-horizontal; 
+    }
+  }   
+
+  &-list {
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height 200ms linear;
+  }
+
+  &-focus {
+    color: global-functions.property(text-background, global-theme.$text-background);
+    background-color: global-functions.property(background, global-variables.$background); 
+    box-shadow: global-functions.property(box-shadow, global-variables.$box-shadow);
+    width: calc(100% - variables.$margin-min);
+    z-index: app-bar-variables.$z-index + 5;
+
+    .search-icon {
+      fill: global-functions.property(text-background, global-theme.$text-background);  
+
+      &-left, &-right {
+        display: block;
+      }
+    }
+
+    .search-list {
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+  }
+}

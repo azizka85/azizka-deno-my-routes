@@ -6,7 +6,7 @@ import { EsBuildPluginImport } from 'esbuild-import/src/plugin.ts';
 
 import { VERSION } from '../globals.ts';
 
-export const dev = Deno.env.get('NODE_ENV') !== 'production';
+import { dev } from '../server/init-environment.ts';
 
 export const baseUrl = new URL(import.meta.url);
 

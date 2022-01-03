@@ -43,8 +43,8 @@ export function start() {
     }
   });
   
-  server.listenAndServe();
-  
+  server.listenAndServe();  
+
   console.log(`Server listening on port ${port}`); 
   
   return server;

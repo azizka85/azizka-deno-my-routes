@@ -1,10 +1,67 @@
 <div data-page="signin-page">
-  <h6><%= helpers.tr('Sign In') %></h6>
-  <%- 
-    await partials['auth-service-component']({
-      data,
-      partials,
-      helpers
-    }) 
-  %> 
+  <div class="card main-card">
+    <div class="card-body">
+      <h5 class="card-title" data-title="main"><%= helpers.tr('Sign In') %></h5>
+      <form method="post" class="mb-3">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email*</label>
+          <input 
+            type="email" 
+            name="email" 
+            id="email" 
+            class="form-control" 
+            required
+          >
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">
+            <span 
+              id="password-label"
+            >
+              <%= helpers.tr('Password') %> 
+            </span>*
+          </label>
+          <input 
+            type="password" 
+            name="password" 
+            id="password" 
+            class="form-control" 
+            required
+          >
+        </div>
+        <div style="text-align: right;" class="mb-3">
+          <a 
+            class="btn btn-light" 
+            href="<%= data.rootLink %>sign-up" 
+            data-button="sign-up"
+          >
+            <%= helpers.tr('Sign Up') %> 
+          </a>
+        </div>
+        <div style="text-align: right;">
+          <button 
+            type="submit" 
+            class="btn btn-primary"
+            data-button="sign-in"
+          >
+            <%= helpers.tr('Sign In') %> 
+          </button>
+          <a 
+            class="btn btn-secondary" 
+            href="<%= data.rootLink %> "
+            data-button="cancel"
+          >
+            <%= helpers.tr('Cancel') %> 
+          </a>
+        </div>
+      </form>
+      <%- 
+        await partials['auth-service-component']({
+          data,
+          partials,
+          helpers
+        })
+      %> 
+    </div>
+  </div>
 </div>
