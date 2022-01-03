@@ -28,6 +28,7 @@ var _MainLayout = class extends BaseLayout {
   drawerElem = null;
   navIcon = null;
   searchIcon = null;
+  headerIconElem = null;
   headerIconBtn = null;
   signInUpElem = null;
   signOutElem = null;
@@ -64,9 +65,7 @@ var _MainLayout = class extends BaseLayout {
     this.addDrawerHoverClassHandler = () => this.drawerElem?.classList.add("drawer-hover");
     this.removeDrawerHoverClassHandler = () => this.drawerElem?.classList.remove("drawer-hover");
     this.signInUpElemClickHandler = (event) => navigateHandler(event, this.signInUpElem);
-    this.searchInputFocusHandler = () => {
-      this.searchPanel?.classList.add("search-focus");
-    };
+    this.searchInputFocusHandler = () => this.searchPanel?.classList.add("search-focus");
     this.searchIconRightClickHandler = () => {
       if (this.searchInput) {
         this.searchInput.value = "";
@@ -119,6 +118,7 @@ var _MainLayout = class extends BaseLayout {
       this.navIcon = this.appBarElem?.querySelector('[data-button="navigation"]') || null;
       this.searchIcon = this.appBarElem?.querySelector('[data-button="search"]') || null;
       this.headerIconBtn = this.drawerElem?.querySelector('[data-button="header-navigation"]') || null;
+      this.headerIconElem = this.headerIconBtn?.querySelector('[data-icon="header-navigation-icon"]') || null;
       const drawerAccountBar = this.drawerElem?.querySelector(".drawer-account-bar");
       this.signInUpElem = drawerAccountBar?.querySelector('[data-content="sign-in-up"]') || null;
       this.signOutElem = drawerAccountBar?.querySelector('[data-content="sign-out"]') || null;
@@ -129,7 +129,7 @@ var _MainLayout = class extends BaseLayout {
       this.list = this.drawerElem?.querySelector('[data-list="main"]') || null;
       this.searchPanel = this.appBarElem?.querySelector(".search") || null;
       this.searchForm = this.searchPanel?.querySelector("form") || null;
-      this.searchInput = this.searchForm?.querySelector(".search-input") || null;
+      this.searchInput = this.searchForm?.querySelector(".search-input");
     }
     return content;
   }
@@ -143,22 +143,26 @@ var _MainLayout = class extends BaseLayout {
     const drawerLangBar = this.drawerElem?.querySelector(".drawer-lang-bar");
     drawerLangBar?.addEventListener("mouseenter", this.addDrawerHoverClassHandler);
     const drawerLangCheckbox = drawerLangBar?.querySelector('input[type="checkbox"]');
-    for (let i = 0; i < (this.langList?.children.length || 0); i++) {
-      const item = this.langList?.children[i];
-      const handler = (event) => {
-        const langBarCurrent = drawerLangBar?.querySelector(".drawer-lang-bar-current");
-        langBarCurrent?.classList.add("drawer-lang-bar-current-loading");
-        navigateHandler(event, item);
-        if (drawerLangCheckbox) {
-          drawerLangCheckbox.checked = false;
-        }
-      };
-      item.addEventListener("click", handler);
-      this.langListItemClickHandlers.push(handler);
+    const drawerLangBarCurrent = drawerLangBar?.querySelector(".drawer-lang-bar-current");
+    if (this.langList) {
+      for (let i = 0; i < this.langList.children.length; i++) {
+        const item = this.langList.children[i];
+        const handler = (event) => {
+          drawerLangBarCurrent?.classList.add("drawer-lang-bar-current-loading");
+          navigateHandler(event, item);
+          if (drawerLangCheckbox) {
+            drawerLangCheckbox.checked = false;
+          }
+        };
+        item.addEventListener("click", handler);
+        this.langListItemClickHandlers.push(handler);
+      }
     }
-    for (let i = 0; i < (this.list?.children.length || 0); i++) {
-      const item = this.list?.children[i];
-      item?.addEventListener("mouseenter", this.addDrawerHoverClassHandler);
+    if (this.list) {
+      for (let i = 0; i < this.list.children.length; i++) {
+        const item = this.list.children[i];
+        item.addEventListener("mouseenter", this.addDrawerHoverClassHandler);
+      }
     }
     this.drawerElem?.addEventListener("mouseleave", this.removeDrawerHoverClassHandler);
     this.searchInput?.addEventListener("focus", this.searchInputFocusHandler);
@@ -180,14 +184,17 @@ var _MainLayout = class extends BaseLayout {
     this.signInUpElem?.removeEventListener("click", this.signInUpElemClickHandler);
     const drawerLangBar = this.drawerElem?.querySelector(".drawer-lang-bar");
     drawerLangBar?.removeEventListener("mouseenter", this.addDrawerHoverClassHandler);
-    for (let i = 0; i < (this.langList?.children.length || 0); i++) {
-      const item = this.langList?.children[i];
-      item.removeEventListener("click", this.langListItemClickHandlers[i]);
+    if (this.langList) {
+      for (let i = 0; i < this.langList.children.length; i++) {
+        this.langList.children[i].removeEventListener("click", this.langListItemClickHandlers[i]);
+      }
     }
     this.langListItemClickHandlers = [];
-    for (let i = 0; i < (this.list?.children.length || 0); i++) {
-      const item = this.list?.children[i];
-      item?.removeEventListener("mouseenter", this.addDrawerHoverClassHandler);
+    if (this.list) {
+      for (let i = 0; i < this.list.children.length; i++) {
+        const item = this.list.children[i];
+        item.removeEventListener("mouseenter", this.addDrawerHoverClassHandler);
+      }
     }
     this.drawerElem?.removeEventListener("mouseleave", this.removeDrawerHoverClassHandler);
     this.searchInput?.removeEventListener("focus", this.searchInputFocusHandler);
@@ -217,10 +224,10 @@ var _MainLayout = class extends BaseLayout {
       this.searchIcon.setAttribute("href", path);
     }
     if (navigation) {
-      this.headerIconBtn?.classList.add("header-navigation-open");
+      this.headerIconElem?.classList.remove("drawer-header-icon-hide");
       this.drawerElem?.classList.add("drawer-open");
     } else {
-      this.headerIconBtn?.classList.remove("header-navigation-open");
+      this.headerIconElem?.classList.add("drawer-header-icon-hide");
       this.drawerElem?.classList.remove("drawer-open");
     }
     if (this.signInUpElem) {
@@ -232,25 +239,27 @@ var _MainLayout = class extends BaseLayout {
       const langRoute = lang === DEFAULT_LANGUAGE ? "" : `/${lang}`;
       this.signOutElem.setAttribute("href", `/auth/sign-out?redirect=${langRoute}/sign-in`);
     }
+    const drawerLangBar = this.drawerElem?.querySelector(".drawer-lang-bar");
+    const drawerLangBarCurrent = drawerLangBar?.querySelector(".drawer-lang-bar-current");
+    drawerLangBarCurrent?.classList.remove("drawer-lang-bar-current-loading");
     if (this.langElem) {
       this.langElem.textContent = LANGUAGES[lang]?.label;
     }
     if (this.langImageElem) {
       this.langImageElem.src = LANGUAGES[lang]?.image;
     }
-    const drawerLangBar = this.drawerElem?.querySelector(".drawer-lang-bar");
-    const langBarCurrent = drawerLangBar?.querySelector(".drawer-lang-bar-current");
-    langBarCurrent?.classList.remove("drawer-lang-bar-current-loading");
-    for (let i = 0; i < (this.langList?.children.length || 0); i++) {
-      const item = this.langList?.children[i];
-      if (item.getAttribute("data-list-item") === `lang-${lang}`) {
-        item.classList.add("list-item-activated");
-      } else {
-        item.classList.remove("list-item-activated");
+    if (this.langList) {
+      for (let i = 0; i < this.langList.children.length; i++) {
+        const item = this.langList.children[i];
+        if (item.getAttribute("data-list-item") === `lang-${lang}`) {
+          item.classList.add("list-item-activated");
+        } else {
+          item.classList.remove("list-item-activated");
+        }
+        const itemLang = item.getAttribute("data-list-item")?.split("-")[1] || DEFAULT_LANGUAGE;
+        const path = changeLangPath(location.pathname, itemLang);
+        item.setAttribute("href", `/${path + location.search}`);
       }
-      const itemLang = item.getAttribute("data-list-item")?.split("-")[1] || DEFAULT_LANGUAGE;
-      const path = changeLangPath(location.pathname, itemLang);
-      item.setAttribute("href", `/${path + location.search}`);
     }
   }
   listen(type, listener) {

@@ -120,7 +120,7 @@
   width: 2rem;
   height: 2rem;
   fill: var(--my-routes-text-background, rgba(0, 0, 0, 0.87));
-  margin: 0 1rem;
+  margin: 0 0.75rem;
   transform: rotate(0deg);
   transition: transform 250ms linear;
 }
@@ -296,6 +296,7 @@
   flex-direction: column;
   position: absolute;
   top: 0.625rem;
+  height: 2.125rem;
   width: calc(100% - 9rem);
   max-width: 45rem;
   padding: 0.25rem;
@@ -305,11 +306,14 @@
   transition: color 200ms linear, background-color 200ms linear, width 200ms linear;
 }
 .search form {
+  height: 2.125rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .search-input {
+  height: 2.125rem;
+  box-sizing: border-box;
   flex: 1;
   color: inherit;
   background-color: rgba(0, 0, 0, 0);
@@ -341,6 +345,7 @@
   color: var(--my-routes-text-background, rgba(0, 0, 0, 0.87));
   background-color: var(--my-routes-background, #fff);
   box-shadow: var(--my-routes-box-shadow, 0 1rem 3rem rgba(0, 0, 0, 0.175));
+  height: unset;
   width: calc(100% - 1.5rem);
   z-index: 15;
 }

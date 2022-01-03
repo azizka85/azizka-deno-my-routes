@@ -25,6 +25,7 @@ export class MainLayout extends BaseLayout implements View {
   protected navIcon: HTMLElement | null = null;
   protected searchIcon: HTMLElement | null = null;
 
+  protected headerIconElem: HTMLElement | null = null;
   protected headerIconBtn: HTMLElement | null = null;
 
   protected signInUpElem: HTMLElement | null = null;
@@ -72,16 +73,14 @@ export class MainLayout extends BaseLayout implements View {
     this.navIconClickHandler = event => navigateHandler(event, this.navIcon as HTMLElement);
     this.searchIconClickHandler = event => navigateHandler(event, this.searchIcon as HTMLElement);
     this.headerIconBtnClickHandler = event => navigateHandler(event, this.headerIconBtn as HTMLElement);
-    
+
     this.addDrawerHoverClassHandler = () => this.drawerElem?.classList.add('drawer-hover');
     this.removeDrawerHoverClassHandler = () => this.drawerElem?.classList.remove('drawer-hover');
 
     this.signInUpElemClickHandler = event => navigateHandler(event, this.signInUpElem as HTMLElement);
 
-    this.searchInputFocusHandler = () => {              
-      this.searchPanel?.classList.add('search-focus');
-    };
-
+    this.searchInputFocusHandler = () => this.searchPanel?.classList.add('search-focus');
+    
     this.searchIconRightClickHandler = () => {        
       if(this.searchInput) {
         this.searchInput.value = '';
@@ -95,7 +94,7 @@ export class MainLayout extends BaseLayout implements View {
     };
 
     this.searchFormSubmitHandler = event => {
-      event.preventDefault();        
+      event.preventDefault();
 
       console.log('Form submited:', this.searchInput?.value);          
 
@@ -103,7 +102,7 @@ export class MainLayout extends BaseLayout implements View {
       this.searchInput?.blur();
     };
 
-    let prevScroll = 0
+    let prevScroll = 0;
 
     this.windowScrollHandler = () => {      
       const currScroll = window.scrollY || 0;
@@ -147,25 +146,29 @@ export class MainLayout extends BaseLayout implements View {
       this.drawerElem = this.node.querySelector('.drawer');      
 
       this.navIcon = this.appBarElem?.querySelector('[data-button="navigation"]') || null;      
-      this.searchIcon = this.appBarElem?.querySelector('[data-button="search"]') || null;    
-      this.headerIconBtn = this.drawerElem?.querySelector('[data-button="header-navigation"]') || null;      
-      
+      this.searchIcon = this.appBarElem?.querySelector('[data-button="search"]') || null;      
+
+      this.headerIconBtn = this.drawerElem?.querySelector('[data-button="header-navigation"]') || null;
+      this.headerIconElem = this.headerIconBtn?.querySelector('[data-icon="header-navigation-icon"]') || null;              
+
       const drawerAccountBar = this.drawerElem?.querySelector('.drawer-account-bar');
 
-      this.signInUpElem = drawerAccountBar?.querySelector('[data-content="sign-in-up"]') || null;   
-      this.signOutElem = drawerAccountBar?.querySelector('[data-content="sign-out"]') || null;   
+      this.signInUpElem = drawerAccountBar?.querySelector('[data-content="sign-in-up"]') || null;    
+      this.signOutElem = drawerAccountBar?.querySelector('[data-content="sign-out"]') || null;     
 
-      const drawerLangBar = this.drawerElem?.querySelector('.drawer-lang-bar');            
-      
+      const drawerLangBar = this.drawerElem?.querySelector('.drawer-lang-bar');      
+
       this.langElem = drawerLangBar?.querySelector('[data-content="lang"]') || null;
       this.langImageElem = drawerLangBar?.querySelector('[data-image="lang"]') || null;
 
-      this.langList = drawerLangBar?.querySelector('[data-list="lang"]') || null;      
-      this.list = this.drawerElem?.querySelector('[data-list="main"]') || null;
+      this.langList = drawerLangBar?.querySelector('[data-list="lang"]') || null;
+      this.list = this.drawerElem?.querySelector('[data-list="main"]') || null;            
 
       this.searchPanel = this.appBarElem?.querySelector('.search') || null;
-      this.searchForm = this.searchPanel?.querySelector('form') || null;       
-      this.searchInput = this.searchForm?.querySelector('.search-input') || null;                  
+
+      this.searchForm = this.searchPanel?.querySelector('form') || null; 
+
+      this.searchInput = this.searchForm?.querySelector('.search-input') as HTMLInputElement;      
     }
 
     return content;
@@ -173,60 +176,52 @@ export class MainLayout extends BaseLayout implements View {
 
   async mount() {
     this.navIcon?.addEventListener('click', this.navIconClickHandler);
-    this.searchIcon?.addEventListener('click', this.searchIconClickHandler);     
+    this.searchIcon?.addEventListener('click', this.searchIconClickHandler);   
     this.headerIconBtn?.addEventListener('click', this.headerIconBtnClickHandler);   
 
     const drawerAccountBar = this.drawerElem?.querySelector('.drawer-account-bar');
-
     drawerAccountBar?.addEventListener('mouseenter', this.addDrawerHoverClassHandler);
 
     this.signInUpElem?.addEventListener('click', this.signInUpElemClickHandler);
 
     const drawerLangBar = this.drawerElem?.querySelector('.drawer-lang-bar');
-
     drawerLangBar?.addEventListener('mouseenter', this.addDrawerHoverClassHandler);
 
     const drawerLangCheckbox = drawerLangBar?.querySelector('input[type="checkbox"]') as HTMLInputElement; 
+    const drawerLangBarCurrent = drawerLangBar?.querySelector('.drawer-lang-bar-current');
 
-    for(let i = 0; i < (this.langList?.children.length || 0); i++) {
-      const item = this.langList?.children[i] as HTMLElement;
+    if(this.langList) {
+      for(let i = 0; i < this.langList.children.length; i++) {
+        const item = this.langList.children[i];
 
-      const handler = (event: MouseEvent) => {
-        const langBarCurrent = drawerLangBar?.querySelector('.drawer-lang-bar-current');
+        const handler = (event: MouseEvent) => {
+          drawerLangBarCurrent?.classList.add('drawer-lang-bar-current-loading');
 
-        langBarCurrent?.classList.add('drawer-lang-bar-current-loading');
-        
-        navigateHandler(event, item as HTMLElement);
+          navigateHandler(event, item as HTMLElement);
 
-        if(drawerLangCheckbox) {
-          drawerLangCheckbox.checked = false;
-        }
-      };
+          if(drawerLangCheckbox) {
+            drawerLangCheckbox.checked = false;
+          }
+        };
 
-      item.addEventListener('click', handler);
-      this.langListItemClickHandlers.push(handler);
+        (item as HTMLElement).addEventListener('click', handler);
+        this.langListItemClickHandlers.push(handler);
+      }
     }
 
-    for(let i = 0; i < (this.list?.children.length || 0); i++) {
-      const item = this.list?.children[i];
+    if(this.list) {
+      for(let i = 0; i < this.list.children.length; i++) {
+        const item = this.list.children[i];
 
-      item?.addEventListener('mouseenter', this.addDrawerHoverClassHandler);
+        item.addEventListener('mouseenter', this.addDrawerHoverClassHandler);
+      }        
     }
 
     this.drawerElem?.addEventListener('mouseleave', this.removeDrawerHoverClassHandler);
 
     this.searchInput?.addEventListener('focus', this.searchInputFocusHandler);
-
-    this.searchForm?.querySelector('.search-icon-right')?.addEventListener(
-      'click', 
-      this.searchIconRightClickHandler
-    );
-
-    this.searchForm?.querySelector('.search-icon-left')?.addEventListener(
-      'click', 
-      this.searchIconLeftClickHandler
-    );
-
+    this.searchForm?.querySelector('.search-icon-right')?.addEventListener('click', this.searchIconRightClickHandler);
+    this.searchForm?.querySelector('.search-icon-left')?.addEventListener('click', this.searchIconLeftClickHandler);
     this.searchForm?.addEventListener('submit', this.searchFormSubmitHandler);
 
     window.addEventListener('scroll', this.windowScrollHandler);
@@ -234,52 +229,43 @@ export class MainLayout extends BaseLayout implements View {
     await Promise.all([
       mount(this.node),
       this.content?.mount?.()
-    ]);
+    ]);   
   }
 
   async unmount() {
     this.navIcon?.removeEventListener('click', this.navIconClickHandler);
-    this.searchIcon?.removeEventListener('click', this.searchIconClickHandler);     
-    this.headerIconBtn?.removeEventListener('click', this.headerIconBtnClickHandler);   
+    this.searchIcon?.removeEventListener('click', this.searchIconClickHandler);    
+    this.headerIconBtn?.removeEventListener('click', this.headerIconBtnClickHandler);  
 
     const drawerAccountBar = this.drawerElem?.querySelector('.drawer-account-bar');
-
     drawerAccountBar?.removeEventListener('mouseenter', this.addDrawerHoverClassHandler);
 
     this.signInUpElem?.removeEventListener('click', this.signInUpElemClickHandler);
 
     const drawerLangBar = this.drawerElem?.querySelector('.drawer-lang-bar');
-
     drawerLangBar?.removeEventListener('mouseenter', this.addDrawerHoverClassHandler);
 
-    for(let i = 0; i < (this.langList?.children.length || 0); i++) {
-      const item = this.langList?.children[i] as HTMLElement;
-
-      item.removeEventListener('click', this.langListItemClickHandlers[i]);
+    if(this.langList) {
+      for(let i = 0; i < this.langList.children.length; i++) {
+        (this.langList.children[i] as HTMLElement).removeEventListener('click', this.langListItemClickHandlers[i]);
+      }
     }
 
     this.langListItemClickHandlers = [];
 
-    for(let i = 0; i < (this.list?.children.length || 0); i++) {
-      const item = this.list?.children[i];
+    if(this.list) {
+      for(let i = 0; i < this.list.children.length; i++) {
+        const item = this.list.children[i];
 
-      item?.removeEventListener('mouseenter', this.addDrawerHoverClassHandler);
+        item.removeEventListener('mouseenter', this.addDrawerHoverClassHandler);
+      }        
     }
 
     this.drawerElem?.removeEventListener('mouseleave', this.removeDrawerHoverClassHandler);
 
     this.searchInput?.removeEventListener('focus', this.searchInputFocusHandler);
-
-    this.searchForm?.querySelector('.search-icon-right')?.removeEventListener(
-      'click', 
-      this.searchIconRightClickHandler
-    );
-
-    this.searchForm?.querySelector('.search-icon-left')?.removeEventListener(
-      'click', 
-      this.searchIconLeftClickHandler
-    );
-
+    this.searchForm?.querySelector('.search-icon-right')?.removeEventListener('click', this.searchIconRightClickHandler);
+    this.searchForm?.querySelector('.search-icon-left')?.removeEventListener('click', this.searchIconLeftClickHandler);
     this.searchForm?.removeEventListener('submit', this.searchFormSubmitHandler);
 
     window.removeEventListener('scroll', this.windowScrollHandler);
@@ -316,10 +302,10 @@ export class MainLayout extends BaseLayout implements View {
     }
 
     if(navigation) {
-      this.headerIconBtn?.classList.add('header-navigation-open');
+      this.headerIconElem?.classList.remove('drawer-header-icon-hide');
       this.drawerElem?.classList.add('drawer-open');
     } else {
-      this.headerIconBtn?.classList.remove('header-navigation-open');
+      this.headerIconElem?.classList.add('drawer-header-icon-hide'); 
       this.drawerElem?.classList.remove('drawer-open');
     }
 
@@ -336,6 +322,11 @@ export class MainLayout extends BaseLayout implements View {
       this.signOutElem.setAttribute('href', `/auth/sign-out?redirect=${langRoute}/sign-in`);      
     }
 
+    const drawerLangBar = this.drawerElem?.querySelector('.drawer-lang-bar');
+    const drawerLangBarCurrent = drawerLangBar?.querySelector('.drawer-lang-bar-current');
+
+    drawerLangBarCurrent?.classList.remove('drawer-lang-bar-current-loading');
+
     if(this.langElem) {
       this.langElem.textContent = (LANGUAGES as any)[lang]?.label;
     }
@@ -344,27 +335,24 @@ export class MainLayout extends BaseLayout implements View {
       this.langImageElem.src = (LANGUAGES as any)[lang]?.image;
     }
 
-    const drawerLangBar = this.drawerElem?.querySelector('.drawer-lang-bar');
-    const langBarCurrent = drawerLangBar?.querySelector('.drawer-lang-bar-current');
+    if(this.langList) {      
+      for(let i = 0; i < this.langList.children.length; i++) {
+        const item = this.langList.children[i];
 
-    langBarCurrent?.classList.remove('drawer-lang-bar-current-loading');
+        if(item.getAttribute('data-list-item') === `lang-${lang}`) {
+          item.classList.add('list-item-activated');
+        } else {
+          item.classList.remove('list-item-activated');
+        }                
 
-    for(let i = 0; i < (this.langList?.children.length || 0); i++) {
-      const item = this.langList?.children[i] as HTMLElement;
+        const itemLang = item.getAttribute('data-list-item')?.split('-')[1] || DEFAULT_LANGUAGE;
+        const path = changeLangPath(location.pathname, itemLang);
 
-      if(item.getAttribute('data-list-item') === `lang-${lang}`) {
-        item.classList.add('list-item-activated');
-      } else {
-        item.classList.remove('list-item-activated');
+        item.setAttribute(
+          'href', 
+          `/${path + location.search}`
+        );
       }
-
-      const itemLang = item.getAttribute('data-list-item')?.split('-')[1] || DEFAULT_LANGUAGE;
-      const path = changeLangPath(location.pathname, itemLang);
-
-      item.setAttribute(
-        'href', 
-        `/${path + location.search}`
-      );
     }
   }
 

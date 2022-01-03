@@ -11,6 +11,7 @@
   flex-direction: column;
   position: absolute;
   top: variables.$top;
+  height: variables.$height;
   width: calc(100% - variables.$margin-max);
   max-width: variables.$max-width;
   padding: variables.$padding;
@@ -20,12 +21,15 @@
   transition: color 200ms linear, background-color 200ms linear, width 200ms linear;    
 
   form {
+    height: variables.$height;
     display: flex;
     align-items: center;
     justify-content: space-between;    
   }
 
   &-input {
+    height: variables.$height;
+    box-sizing: border-box;
     flex: 1;
     color: inherit;
     background-color: rgba(#000000, 0);
@@ -66,6 +70,7 @@
     color: global-functions.property(text-background, global-theme.$text-background);
     background-color: global-functions.property(background, global-variables.$background); 
     box-shadow: global-functions.property(box-shadow, global-variables.$box-shadow);
+    height: unset;
     width: calc(100% - variables.$margin-min);
     z-index: app-bar-variables.$z-index + 5;
 
