@@ -9,7 +9,7 @@ import { BaseLayout } from "./base-layout.ts";
 import { ScrollActionTo, ScrollActionTop, ScrollEventData, ScrollEventType, SCROLL_THRESHOLD } from '../../data/scroll.ts';
 
 import { changeLangPath, toggleQueryParameter } from "../../../utils.ts";
-import { mount, navigateHandler, unmount } from '../../utils.ts';
+import { navigateHandler } from '../../utils.ts';
 
 import { context } from '../../globals.ts';
 import { DEFAULT_LANGUAGE, LANGUAGES } from "../../../globals.ts";
@@ -226,10 +226,7 @@ export class MainLayout extends BaseLayout implements View {
 
     window.addEventListener('scroll', this.windowScrollHandler);
 
-    await Promise.all([
-      mount(this.node),
-      this.content?.mount?.()
-    ]);   
+    await this.content?.mount?.();   
   }
 
   async unmount() {
@@ -274,10 +271,7 @@ export class MainLayout extends BaseLayout implements View {
 
     this.drawerElem?.classList.remove('drawer-open');
 
-    await Promise.all([
-      this.content?.unmount?.(),
-      unmount(this.node)
-    ]);
+    await this.content?.unmount?.();
   } 
 
   async load(lang: string, page: Page<RouteOptions, RouteState>, firstLoad: boolean) {    

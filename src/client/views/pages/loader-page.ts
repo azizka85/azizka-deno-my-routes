@@ -1,7 +1,5 @@
 import { View } from '../view.ts';
 
-import { mount, unmount } from '../../utils.ts';
-
 export class LoaderPage implements View {
   protected static page: LoaderPage | null = null;
 
@@ -25,13 +23,5 @@ export class LoaderPage implements View {
     this.node = content.querySelector('[data-page="loader-page"]');
 
     return content;
-  }
-
-  async mount() {
-    await mount(this.node);
-  }
-
-  async unmount() {
-    await unmount(this.node);
   }
 }

@@ -5,10 +5,8 @@ import {
 } from "../chunk-SXJO5SHV.js";
 import {
   layouts,
-  loadContent,
-  mount,
-  unmount
-} from "../chunk-XDMKKRA4.js";
+  loadContent
+} from "../chunk-G3HCFR4U.js";
 import {
   __publicField
 } from "../chunk-T2T6Q22Z.js";
@@ -52,12 +50,10 @@ var _HomePage = class {
   async mount() {
     this.scrollTopBtn?.addEventListener("click", this.scrollTopBtnClickHandler);
     layouts["main-layout"]?.listen?.(ScrollEventType, this.windowScrollHandler);
-    await mount(this.node);
   }
   async unmount() {
     this.scrollTopBtn?.removeEventListener("click", this.scrollTopBtnClickHandler);
     layouts["main-layout"]?.unlisten?.(ScrollEventType, this.windowScrollHandler);
-    await unmount(this.node);
   }
   async load(lang, page, firstLoad) {
     layouts["main-layout"]?.performAction?.(ScrollActionTo, {

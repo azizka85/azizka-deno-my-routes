@@ -4,7 +4,7 @@ import { View } from '../view.ts';
 
 import { ScrollActionTop, ScrollEventData, ScrollEventType, ScrollActionTo } from '../../data/scroll.ts';
 
-import { loadContent, mount, unmount } from '../../utils.ts';
+import { loadContent } from '../../utils.ts';
 
 import { layouts } from '../../globals.ts';
 
@@ -65,16 +65,12 @@ export class HomePage implements View {
     this.scrollTopBtn?.addEventListener('click', this.scrollTopBtnClickHandler);
 
     layouts['main-layout']?.listen?.(ScrollEventType, this.windowScrollHandler);
-
-    await mount(this.node);
   }
 
   async unmount() {
     this.scrollTopBtn?.removeEventListener('click', this.scrollTopBtnClickHandler);
 
     layouts['main-layout']?.unlisten?.(ScrollEventType, this.windowScrollHandler);
-
-    await unmount(this.node);
   }
 
   async load(lang: string, page: Page, firstLoad: boolean) {

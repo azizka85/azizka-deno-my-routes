@@ -1,15 +1,23 @@
 import {
   LANGUAGES,
-  trimSlashes
-} from "./chunk-XDMKKRA4.js";
+  mount,
+  trimSlashes,
+  unmount
+} from "./chunk-G3HCFR4U.js";
 
 // src/client/views/layouts/base-layout.ts
 var BaseLayout = class {
   content = null;
   async replaceContent(content) {
-    await this.content?.unmount?.();
-    this.content?.elem?.replaceWith(content.elem || "");
-    await content.mount?.();
+    if (this.content?.replaceSelf) {
+      this.content.replaceSelf(content);
+    } else {
+      await this.content?.unmount?.();
+      await unmount(this.content?.elem || null);
+      this.content?.elem?.replaceWith(content.elem || "");
+      await content.mount?.();
+      await mount(content.elem);
+    }
     this.content = content;
   }
 };
@@ -68,4 +76,4 @@ export {
   localeRoute,
   changeLangPath
 };
-//# sourceMappingURL=chunk-2C2SU5AG.js.map
+//# sourceMappingURL=chunk-FZ7DVOEU.js.map

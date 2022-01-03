@@ -208,10 +208,21 @@
           transition: transform 200ms linear;
         }
 
+        @keyframes drawer-lang-bar-current-progress {
+          to { transform: rotate(360deg); }
+        }
+
         .drawer-lang-bar-current-progress {
           width: variables.$lang-bar-current-progress-width;
           height: variables.$lang-bar-current-progress-height;
           margin-left: list-variables.$margin-horizontal;
+          border: 
+            variables.$lang-bar-current-progress-border-width 
+            solid 
+            global-functions.property(primary, global-variables.$primary);
+          border-right-color: transparent;
+          border-radius: 50%;
+          animation: variables.$lang-bar-current-progress-animation-period linear infinite drawer-lang-bar-current-progress;
           display: none;
         }
 

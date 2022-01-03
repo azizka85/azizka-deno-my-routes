@@ -4,7 +4,7 @@ import { View } from '../view.ts';
 
 import { AuthServiceComponent } from '../components/auth-service-component.ts';
 
-import { loadContent, navigateHandler, mount, unmount } from '../../utils.ts';
+import { loadContent, navigateHandler } from '../../utils.ts';
 
 import { context } from '../../globals.ts';
 
@@ -87,8 +87,6 @@ export class SignInPage implements View {
     form?.addEventListener('submit', this.formSubmitHandler);
     this.signUpBtn?.addEventListener('click', this.signUpBtnClickHandler);
     this.cancelBtn?.addEventListener('click', this.cancelBtnClickHandler);
-
-    await mount(this.node);
   }
 
   async unmount() {
@@ -97,8 +95,6 @@ export class SignInPage implements View {
     form?.removeEventListener('submit', this.formSubmitHandler);
     this.signUpBtn?.removeEventListener('click', this.signUpBtnClickHandler);
     this.cancelBtn?.removeEventListener('click', this.cancelBtnClickHandler);
-
-    await unmount(this.node);
   }
 
   async load(lang: string , page: Page, firstLoad: boolean): Promise<void> {

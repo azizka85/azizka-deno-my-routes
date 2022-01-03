@@ -1,14 +1,12 @@
 import {
   AuthServiceComponent
-} from "../chunk-2LBP5SAV.js";
+} from "../chunk-2LHBGLDX.js";
 import {
   DEFAULT_LANGUAGE,
   context,
   loadContent,
-  mount,
-  navigateHandler,
-  unmount
-} from "../chunk-XDMKKRA4.js";
+  navigateHandler
+} from "../chunk-G3HCFR4U.js";
 import {
   __publicField
 } from "../chunk-T2T6Q22Z.js";
@@ -65,14 +63,12 @@ var _SignInPage = class {
     form?.addEventListener("submit", this.formSubmitHandler);
     this.signUpBtn?.addEventListener("click", this.signUpBtnClickHandler);
     this.cancelBtn?.addEventListener("click", this.cancelBtnClickHandler);
-    await mount(this.node);
   }
   async unmount() {
     const form = this.node?.querySelector(".main-card form");
     form?.removeEventListener("submit", this.formSubmitHandler);
     this.signUpBtn?.removeEventListener("click", this.signUpBtnClickHandler);
     this.cancelBtn?.removeEventListener("click", this.cancelBtnClickHandler);
-    await unmount(this.node);
   }
   async load(lang, page, firstLoad) {
     if (this.titleElem) {

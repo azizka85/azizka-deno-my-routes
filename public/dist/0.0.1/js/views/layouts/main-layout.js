@@ -2,7 +2,7 @@ import {
   BaseLayout,
   changeLangPath,
   toggleQueryParameter
-} from "../../chunk-2C2SU5AG.js";
+} from "../../chunk-FZ7DVOEU.js";
 import {
   SCROLL_THRESHOLD,
   ScrollActionTo,
@@ -13,10 +13,8 @@ import {
   DEFAULT_LANGUAGE,
   LANGUAGES,
   context,
-  mount,
-  navigateHandler,
-  unmount
-} from "../../chunk-XDMKKRA4.js";
+  navigateHandler
+} from "../../chunk-G3HCFR4U.js";
 import {
   __publicField
 } from "../../chunk-T2T6Q22Z.js";
@@ -170,10 +168,7 @@ var _MainLayout = class extends BaseLayout {
     this.searchForm?.querySelector(".search-icon-left")?.addEventListener("click", this.searchIconLeftClickHandler);
     this.searchForm?.addEventListener("submit", this.searchFormSubmitHandler);
     window.addEventListener("scroll", this.windowScrollHandler);
-    await Promise.all([
-      mount(this.node),
-      this.content?.mount?.()
-    ]);
+    await this.content?.mount?.();
   }
   async unmount() {
     this.navIcon?.removeEventListener("click", this.navIconClickHandler);
@@ -204,10 +199,7 @@ var _MainLayout = class extends BaseLayout {
     window.removeEventListener("scroll", this.windowScrollHandler);
     this.removeDrawerHoverClassHandler();
     this.drawerElem?.classList.remove("drawer-open");
-    await Promise.all([
-      this.content?.unmount?.(),
-      unmount(this.node)
-    ]);
+    await this.content?.unmount?.();
   }
   async load(lang, page, firstLoad) {
     const navigation = page.query["main-layout-navigation"];

@@ -208,10 +208,19 @@
   transform: rotate(0deg);
   transition: transform 200ms linear;
 }
+@keyframes drawer-lang-bar-current-progress {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .drawer-lang-bar label .drawer-lang-bar-current .drawer-lang-bar-current-progress {
-  width: 1rem;
-  height: 1rem;
+  width: 0.5rem;
+  height: 0.5rem;
   margin-left: 1rem;
+  border: 0.25rem solid var(--my-routes-primary, #6200ee);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: 1s linear infinite drawer-lang-bar-current-progress;
   display: none;
 }
 .drawer-lang-bar label .drawer-lang-bar-current-loading .drawer-lang-bar-current-icon {
@@ -367,11 +376,23 @@
   height: 100%;
   width: 100%;
 }
-
 .loader-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
+}
+@keyframes loader-container-progress {
+  to {
+    transform: translateX(150%);
+  }
+}
+.loader-container-progress {
+  width: 50%;
+  transform: translateX(-150%);
+  box-sizing: border-box;
+  border: 0.125rem solid var(--my-routes-primary, #6200ee);
+  animation: 1s linear infinite loader-container-progress;
 }
 
 .splash {

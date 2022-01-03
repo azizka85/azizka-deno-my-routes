@@ -2,19 +2,17 @@ import {
   BaseLayout,
   localeRoute,
   toCamel
-} from "./chunk-2C2SU5AG.js";
+} from "./chunk-FZ7DVOEU.js";
 import {
   DEFAULT_LANGUAGE,
   Translator,
   context,
   languages,
   layouts,
-  mount,
   routeNavigator,
   router,
-  unmount,
   views
-} from "./chunk-XDMKKRA4.js";
+} from "./chunk-G3HCFR4U.js";
 import {
   __publicField
 } from "./chunk-T2T6Q22Z.js";
@@ -35,12 +33,6 @@ var _LoaderPage = class {
     let content = parent || document.body;
     this.node = content.querySelector('[data-page="loader-page"]');
     return content;
-  }
-  async mount() {
-    await mount(this.node);
-  }
-  async unmount() {
-    await unmount(this.node);
   }
 };
 var LoaderPage = _LoaderPage;

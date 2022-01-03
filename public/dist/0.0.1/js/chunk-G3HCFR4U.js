@@ -409,8 +409,8 @@ async function unmount(elem) {
 }
 
 export {
-  trimSlashes,
   Translator,
+  trimSlashes,
   LANGUAGES,
   DEFAULT_LANGUAGE,
   router,
@@ -424,4 +424,4 @@ export {
   mount,
   unmount
 };
-//# sourceMappingURL=chunk-XDMKKRA4.js.map
+//# sourceMappingURL=chunk-G3HCFR4U.js.map

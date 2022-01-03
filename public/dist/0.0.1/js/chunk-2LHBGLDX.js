@@ -1,7 +1,7 @@
 import {
   DEFAULT_LANGUAGE,
   context
-} from "./chunk-XDMKKRA4.js";
+} from "./chunk-G3HCFR4U.js";
 
 // src/client/views/components/auth-service-component.ts
 var AuthServiceComponent = class {
@@ -25,4 +25,4 @@ var AuthServiceComponent = class {
 export {
   AuthServiceComponent
 };
-//# sourceMappingURL=chunk-2LBP5SAV.js.map
+//# sourceMappingURL=chunk-2LHBGLDX.js.map

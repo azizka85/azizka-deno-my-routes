@@ -21,8 +21,10 @@ $lang-bar-icon-height: 1rem !default;
 $lang-bar-flag-width: 1.5rem !default;
 $lang-bar-flag-height: 1.5rem !default;
 
-$lang-bar-current-progress-width: 1rem !default;
-$lang-bar-current-progress-height: 1rem !default;
+$lang-bar-current-progress-width: 0.5rem !default;
+$lang-bar-current-progress-height: 0.5rem !default;
+
+$lang-bar-current-progress-border-width: 0.25rem !default;
 
 // margin & padding
 $icon-margin-vertical: 0;
@@ -44,3 +46,5 @@ $account-bar-action-margin-top: 1rem !default;
 // position
 $lang-list-top: 1.5rem;
 
+// animation
+$lang-bar-current-progress-animation-period: 1s;

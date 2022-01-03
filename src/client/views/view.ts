@@ -27,6 +27,8 @@ export interface View extends Listener {
 
   init(parent: HTMLElement | null, firstTime: boolean): Promise<HTMLElement>;
 
+  replaceSelf?(content: View): Promise<void>;
+
   mount?(): Promise<void>;
   unmount?(): Promise<void>;
 
