@@ -73,32 +73,32 @@
   border-right-style: solid;
   width: 100%;
 }
-.drawer-open .drawer-header, .drawer-hover .drawer-header {
+.drawer-open .drawer-header, .drawer-hover .drawer-header, .drawer-hoverable:hover .drawer-header {
   color: var(--my-routes-text-primary, white);
   background-color: var(--my-routes-primary, #6200ee);
 }
-.drawer-open .drawer-header-icon, .drawer-hover .drawer-header-icon {
+.drawer-open .drawer-header-icon, .drawer-hover .drawer-header-icon, .drawer-hoverable:hover .drawer-header-icon {
   fill: var(--my-routes-text-primary, white);
 }
-.drawer-open .drawer-account-bar, .drawer-hover .drawer-account-bar {
+.drawer-open .drawer-account-bar, .drawer-hover .drawer-account-bar, .drawer-hoverable:hover .drawer-account-bar {
   background-color: var(--my-routes-primary, #6200ee);
 }
-.drawer-open .drawer-account-bar-avatar, .drawer-hover .drawer-account-bar-avatar {
+.drawer-open .drawer-account-bar-avatar, .drawer-hover .drawer-account-bar-avatar, .drawer-hoverable:hover .drawer-account-bar-avatar {
   width: 4rem;
   height: 4rem;
 }
-.drawer-open .drawer-account-bar-avatar-icon, .drawer-hover .drawer-account-bar-avatar-icon {
+.drawer-open .drawer-account-bar-avatar-icon, .drawer-hover .drawer-account-bar-avatar-icon, .drawer-hoverable:hover .drawer-account-bar-avatar-icon {
   width: 4rem;
   height: 4rem;
 }
-.drawer-open .drawer-account-bar-avatar-photo, .drawer-hover .drawer-account-bar-avatar-photo {
+.drawer-open .drawer-account-bar-avatar-photo, .drawer-hover .drawer-account-bar-avatar-photo, .drawer-hoverable:hover .drawer-account-bar-avatar-photo {
   width: 4rem;
   height: 4rem;
 }
-.drawer-open .drawer-account-bar-actions, .drawer-hover .drawer-account-bar-actions {
+.drawer-open .drawer-account-bar-actions, .drawer-hover .drawer-account-bar-actions, .drawer-hoverable:hover .drawer-account-bar-actions {
   max-height: 6rem;
 }
-.drawer-open .drawer-account-bar-actions a, .drawer-hover .drawer-account-bar-actions a {
+.drawer-open .drawer-account-bar-actions a, .drawer-hover .drawer-account-bar-actions a, .drawer-hoverable:hover .drawer-account-bar-actions a {
   color: var(--my-routes-text-primary, white);
 }
 .drawer-content {
@@ -258,10 +258,10 @@
     border-right-width: 1px;
     border-right-style: solid;
   }
-  .drawer-hover:not(.drawer-open) {
+  .drawer-hover:not(.drawer-open), .drawer-hoverable:hover:not(.drawer-open) {
     box-shadow: var(--my-routes-box-shadow, 0 1rem 3rem rgba(0, 0, 0, 0.175));
   }
-  .drawer-open, .drawer-hover {
+  .drawer-open, .drawer-hover, .drawer-hoverable:hover {
     width: 18rem;
   }
   .drawer-open ~ .main-content {
@@ -417,6 +417,7 @@
 html, body {
   height: 100vh;
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 [data-layout], [data-page] {

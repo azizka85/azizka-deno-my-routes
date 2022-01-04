@@ -32,7 +32,7 @@
     width: 100%;
   }
 
-  &-open, &-hover {
+  &-open, &-hover, &-hoverable:hover {
     .drawer-header {
       color: global-functions.property(text-primary, global-theme.$text-primary);
       background-color: global-functions.property(primary, global-variables.$primary);
@@ -273,11 +273,11 @@
     border-right-width: 1px;
     border-right-style: solid;  
 
-    &-hover:not(&-open) {
+    &-hover:not(&-open), &-hoverable:hover:not(&-open) {
       box-shadow: global-functions.property(box-shadow, global-variables.$box-shadow);   
     }
 
-    &-open, &-hover {
+    &-open, &-hover, &-hoverable:hover {
       width: variables.$width;
     }
 

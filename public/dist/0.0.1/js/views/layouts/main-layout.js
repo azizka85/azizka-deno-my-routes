@@ -112,9 +112,10 @@ var _MainLayout = class extends BaseLayout {
     this.node = content.querySelector('[data-layout="main-layout"]') || null;
     if (this.node) {
       this.appBarElem = this.node.querySelector(".app-bar");
-      this.drawerElem = this.node.querySelector(".drawer");
       this.navIcon = this.appBarElem?.querySelector('[data-button="navigation"]') || null;
       this.searchIcon = this.appBarElem?.querySelector('[data-button="search"]') || null;
+      this.drawerElem = this.node.querySelector(".drawer");
+      this.drawerElem?.classList.remove("drawer-hoverable");
       this.headerIconBtn = this.drawerElem?.querySelector('[data-button="header-navigation"]') || null;
       this.headerIconElem = this.headerIconBtn?.querySelector('[data-icon="header-navigation-icon"]') || null;
       const drawerAccountBar = this.drawerElem?.querySelector(".drawer-account-bar");

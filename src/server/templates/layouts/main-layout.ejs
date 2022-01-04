@@ -65,7 +65,7 @@
       </div>
     </div>
   </header>
-  <aside class="drawer <%= data.navigation ? 'drawer-open' : '' %>">
+  <aside class="drawer drawer-hoverable <%= data.navigation ? 'drawer-open' : '' %>">
     <div class="drawer-header">
       <a 
         data-button="header-navigation"
@@ -112,17 +112,25 @@
             <a 
               href="#"
               data-content="user-name"
+              style="white-space: nowrap; overflow: hidden;"
             >
               <%= data.user.name %>
             </a>
             <a 
               href="/auth/sign-out?redirect=/<%= data.lang %>/sign-in" 
               data-content="sign-out"
+              style="white-space: nowrap; overflow: hidden;"
             >
               <%= helpers.tr('Sign Out') %>
             </a>
           <% } else { %>  
-            <a href="/<%= data.lang %>/sign-in" data-content="sign-in-up"><%= helpers.tr('Sign In/Up') %></a>
+            <a 
+              href="/<%= data.lang %>/sign-in" 
+              data-content="sign-in-up"
+              style="white-space: nowrap; overflow: hidden;"
+            >
+              <%= helpers.tr('Sign In/Up') %>
+            </a>
           <% } %>       
         </div>
       </div>
