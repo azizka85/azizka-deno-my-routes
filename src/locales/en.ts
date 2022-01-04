@@ -5,11 +5,9 @@ export default {
     "Sign Up": "Sign Up",
     "Sign In/Up": "Sign In/Up",
     "Sign Out": "Sign Out",
-    "Email required": "Email required",
     "Name": "Name",
-    "Name required": "Name required",
     "Password": "Password",    
-    "Password required": "Password required",
+    "Photo": "Photo",
     "Cancel": "Cancel",
     "Or use the service": "Or use the service",
     "Auth service": "Auth service"

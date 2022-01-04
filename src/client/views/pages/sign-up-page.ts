@@ -17,8 +17,16 @@ export class SignUpPage implements View {
 
   protected titleElem: HTMLElement | null = null;
 
+  protected emailInputElem: HTMLInputElement | null = null;
+
+  protected nameInputElem: HTMLInputElement | null = null;
   protected nameLabelElem: HTMLElement | null = null;
+
+  protected passwordInputElem: HTMLInputElement | null = null;
   protected passwordLabelElem: HTMLElement | null = null;
+
+  protected photoInputElem: HTMLInputElement | null = null;
+  protected photoLabelElem: HTMLElement | null = null;
 
   protected signInBtn: HTMLElement | null = null;
   protected signUpBtn: HTMLElement | null = null;
@@ -70,8 +78,16 @@ export class SignUpPage implements View {
 
     this.titleElem = this.node?.querySelector('[data-title="main"]') || null;
 
+    this.emailInputElem = form?.querySelector('#email') || null;
+
+    this.nameInputElem = form?.querySelector('#name') || null;
     this.nameLabelElem = form?.querySelector('#name-label') || null;
+
+    this.passwordInputElem = form?.querySelector('#password') || null;
     this.passwordLabelElem = form?.querySelector('#password-label') || null;
+
+    this.photoInputElem = form?.querySelector('#photo') || null;
+    this.photoLabelElem = form?.querySelector('#photo-label') || null;
 
     this.signInBtn = form?.querySelector('[data-button="sign-in"]') || null;    
     this.signUpBtn = form?.querySelector('[data-button="sign-up"]') || null;
@@ -104,12 +120,24 @@ export class SignUpPage implements View {
       this.titleElem.textContent = context.tr('Sign Up');
     }
 
+    if(this.nameInputElem) {
+      this.nameInputElem.placeholder = context.tr('Name') + '*';
+    }
+
     if(this.nameLabelElem) {
-      this.nameLabelElem.textContent = context.tr('Name');
+      this.nameLabelElem.textContent = context.tr('Name') + '*';
+    }
+
+    if(this.passwordInputElem) {
+      this.passwordInputElem.placeholder = context.tr('Password') + '*';
     }
 
     if(this.passwordLabelElem) {
-      this.passwordLabelElem.textContent = context.tr('Password');
+      this.passwordLabelElem.textContent = context.tr('Password') + '*';
+    }
+
+    if(this.photoLabelElem) {
+      this.photoLabelElem.textContent = context.tr('Photo');
     }
 
     if(this.signInBtn) {

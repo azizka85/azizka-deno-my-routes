@@ -12,10 +12,13 @@ $breakpoint-xl: 3599px !default;
 $border: #dee2e6 !default;
 $background: #fff !default;
 $primary: #6200ee !default;
+$danger: #b00020 !default;
+$success: #018786 !default;
 
 $text-colors: (
   dark: (
     primary: rgba(black, 0.87),
+    text-primary: $primary,
     secondary: rgba(black, 0.54),
     hint: rgba(black, 0.38),
     disabled: rgba(black, 0.38),
@@ -23,6 +26,7 @@ $text-colors: (
   ),
   light: (
     primary: white,
+    text-primary: white,
     secondary: rgba(white, 0.7),
     hint: rgba(white, 0.5),
     disabled: rgba(white, 0.5),

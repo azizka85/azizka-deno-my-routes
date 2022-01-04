@@ -17,6 +17,9 @@ export class SignInPage implements View {
 
   protected titleElem: HTMLElement | null = null;
 
+  protected emailInputElem: HTMLInputElement | null = null;
+
+  protected passwordInputElem: HTMLInputElement | null = null;
   protected passwordLabelElem: HTMLElement | null = null;
 
   protected signUpBtn: HTMLElement | null = null;
@@ -69,6 +72,9 @@ export class SignInPage implements View {
 
     this.titleElem = this.node?.querySelector('[data-title="main"]') || null;
 
+    this.emailInputElem = form?.querySelector('#email') || null;
+
+    this.passwordInputElem = form?.querySelector('#password') || null;
     this.passwordLabelElem = form?.querySelector('#password-label') || null;
 
     this.signUpBtn = form?.querySelector('[data-button="sign-up"]') || null;
@@ -102,8 +108,12 @@ export class SignInPage implements View {
       this.titleElem.textContent = context.tr('Sign In');
     }
 
+    if(this.passwordInputElem) {
+      this.passwordInputElem.placeholder = context.tr('Password') + '*';
+    }
+
     if(this.passwordLabelElem) {
-      this.passwordLabelElem.textContent = context.tr('Password');
+      this.passwordLabelElem.textContent = context.tr('Password') + '*';
     }
 
     if(this.signUpBtn) {

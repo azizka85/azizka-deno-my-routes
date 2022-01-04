@@ -9,3 +9,4 @@ $text-background: functions.accessible-ink-color(variables.$background, primary)
 $tint-30-text-background: functions.tint-color($text-background, 30%) !default;
 
 $text-primary: functions.accessible-ink-color(variables.$primary, primary) !default;
+$text-background-primary: functions.accessible-ink-color(variables.$background, text-primary) !default;

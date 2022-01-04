@@ -1,3 +1,7 @@
+@use '../functions' as global-functions;
+
+@use '../theme' as global-theme;
+
 @use './variables';
 
 html, body {
@@ -22,10 +26,20 @@ html, body {
     variables.$main-card-margin-horizontal
     variables.$main-card-margin-bottom;
 
+  &-body {
+    margin: 
+      variables.$main-card-body-margin-vertical
+      variables.$main-card-body-margin-horizontal;
+  }
+
   &-service-icon {
     width: variables.$main-card-service-icon-width;
     height: variables.$main-card-service-icon-height;
-    fill: currentColor;
+    color: global-functions.property(text-background, global-theme.$text-background);
+    
+    &:hover {
+      fill: global-functions.property(text-background-primary, global-theme.$text-background-primary);;
+    }
   }
 }
 
@@ -33,18 +47,23 @@ html, body {
   position: fixed;
   bottom: variables.$btn-scroll-top-bottom;
   right: variables.$btn-scroll-top-right;
-  border-radius: variables.$btn-scroll-top-border-radius;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: unset;
   width: variables.$btn-scroll-top-width;
   height: variables.$btn-scroll-top-height;
   padding: unset;
   margin: unset;
   transform: scale(1);
-  transition: transform 250ms linear;
+  transition: transform 250ms linear, box-shadow 250ms linear;
 
   &.btn-exited {
     transform: scale(0);
   }
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
 }

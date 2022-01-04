@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../src/client/views/components/auth-service-component.ts"],
-  "sourcesContent": ["import { Page } from 'router/src/data/page.ts';\n\nimport { Component, View } from '../view.ts';\n\nimport { context } from '../../globals.ts';\n\nimport { DEFAULT_LANGUAGE } from '../../../globals.ts';\n\nexport class AuthServiceComponent implements Component {\n  protected titleElem: HTMLElement | null = null;\n\n  protected googleBtn: HTMLElement | null = null;\n\n  async init(page: View, firstTime: boolean) {\n    this.titleElem = page.elem?.querySelector('[data-title=\"auth-service\"]') || null;\n\n    this.googleBtn = page.elem?.querySelector('[data-button=\"auth-service-google\"]') || null;\n  }\n  \n  async load(lang: string, page: Page, firstLoad: boolean) {\n    if(this.titleElem) {\n      this.titleElem.textContent = context.tr('Or use the service');\n    }\n\n    if(this.googleBtn) {\n      const langQuery = lang === DEFAULT_LANGUAGE ? '' : `?lang=${lang}`;\n\n      this.googleBtn.setAttribute('href', `/auth/service/github${langQuery}`);\n    }\n  }\n}\n"],
-  "mappings": ";;;;;;AAQO,iCAAgD;AAAA,EAC3C,YAAgC;AAAA,EAEhC,YAAgC;AAAA,QAEpC,KAAK,MAAY,WAAoB;AACzC,SAAK,YAAY,KAAK,MAAM,cAAc,kCAAkC;AAE5E,SAAK,YAAY,KAAK,MAAM,cAAc,0CAA0C;AAAA;AAAA,QAGhF,KAAK,MAAc,MAAY,WAAoB;AACvD,QAAG,KAAK,WAAW;AACjB,WAAK,UAAU,cAAc,QAAQ,GAAG;AAAA;AAG1C,QAAG,KAAK,WAAW;AACjB,YAAM,YAAY,SAAS,mBAAmB,KAAK,SAAS;AAE5D,WAAK,UAAU,aAAa,QAAQ,uBAAuB;AAAA;AAAA;AAAA;",
-  "names": []
-}
