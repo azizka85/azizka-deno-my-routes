@@ -10,7 +10,7 @@
 
     "dejs/": "https://deno.land/x/dejs@0.10.2/",
 
-    "router/": "https://deno.land/x/azizka_deno_router@1.2.0/",
+    "router/": "https://deno.land/x/azizka_deno_router@1.2.2/",
     "i18n/": "https://deno.land/x/azizka_deno_i18n@1.1.0/"
   }
 }
