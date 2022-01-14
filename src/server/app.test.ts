@@ -27,8 +27,6 @@ Deno.test('should load static file "favicon.png" correctly', async () => {
     'image/png',
     `Content-Type should be "image/png" but we have "${state.response.headers.get('Content-Type')}"`
   );
-
-  state.file?.close();
 });
 
 Deno.test('should load static file "images/flags/kz.svg" correctly', async () => {
@@ -52,8 +50,6 @@ Deno.test('should load static file "images/flags/kz.svg" correctly', async () =>
     'image/svg+xml',
     `Content-Type should be "image/svg+xml" but we have "${state.response.headers.get('Content-Type')}"`
   );
-
-  state.file?.close();
 });
 
 Deno.test(`should load static file "dist/${VERSION}/js/main.js" correctly`, async () => {
@@ -77,8 +73,6 @@ Deno.test(`should load static file "dist/${VERSION}/js/main.js" correctly`, asyn
     'application/javascript; charset=UTF-8',
     `Content-Type should be "application/javascript; charset=UTF-8" but we have "${state.response.headers.get('Content-Type')}"`
   );
-
-  state.file?.close();
 });
 
 Deno.test(`should load static file "dist/${VERSION}/css/main.css" correctly`, async () => {
@@ -102,6 +96,4 @@ Deno.test(`should load static file "dist/${VERSION}/css/main.css" correctly`, as
     'text/css; charset=UTF-8',
     `Content-Type should be "text/css; charset=UTF-8" but we have "${state.response.headers.get('Content-Type')}"`
   );
-
-  state.file?.close();
 });

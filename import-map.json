@@ -1,7 +1,6 @@
 {
   "imports": {    
     "path/": "https://deno.land/std@0.119.0/path/",
-    "streams/": "https://deno.land/std@0.119.0/streams/",
     "http/": "https://deno.land/std@0.119.0/http/",    
 
     "denv/": "https://deno.land/x/denv@3.1.0/",

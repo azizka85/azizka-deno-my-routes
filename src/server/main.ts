@@ -31,7 +31,8 @@ export function start() {
         };  
       
         return new Response(
-          JSON.stringify(data), {
+          JSON.stringify(data), 
+          {
             headers: {
               'Content-Type': 'application/json;charset=UTF-8'
             }
