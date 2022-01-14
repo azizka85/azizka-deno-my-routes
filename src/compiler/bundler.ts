@@ -4,10 +4,6 @@ import { build, stop } from 'esbuild/mod.js';
 
 import { EsBuildPluginImport } from 'esbuild-import/src/plugin.ts';
 
-import { VERSION } from '../globals.ts';
-
-import { dev } from '../server/init-environment.ts';
-
 export const baseUrl = new URL(import.meta.url);
 
 export const cachePath = JSON
@@ -26,14 +22,17 @@ export const cachePath = JSON
   )
   .modulesCache;
 
-export const currentPath = dirname(
-  fromFileUrl(import.meta.url)
+export const clientPath = join(
+  dirname(
+    fromFileUrl(import.meta.url)
+  ),
+  '../client'
 );
 
-export async function createBundles() {
+export async function createBundles(dev: boolean, version: string) {
   try {
     await Deno.remove(
-      join(currentPath, `../../public/dist/${VERSION}`),
+      join(clientPath, `../../public/dist/${version}`),
       {
         recursive: true
       }
@@ -44,7 +43,7 @@ export async function createBundles() {
 
   const importMap = JSON.parse(
     await Deno.readTextFile(
-      join(currentPath, '../../import-map.json')
+      join(clientPath, '../../import-map.json')
     )
   );    
 
@@ -61,16 +60,16 @@ export async function createBundles() {
       setup: pluginImport.setup.bind(pluginImport)
     }],
     entryPoints: {
-      './locales/en': join(currentPath, '../locales/en.ts'),
-      './locales/ru': join(currentPath, '../locales/ru.ts'),
-      './locales/kz': join(currentPath, '../locales/kz.ts'),
-      './main': join(currentPath, 'main.ts'),
-      './views/layouts/main-layout': join(currentPath, './views/layouts/main-layout.ts'),
-      './views/home-page': join(currentPath, './views/pages/home-page.ts'),
-      './views/sign-in-page': join(currentPath, './views/pages/sign-in-page.ts'),
-      './views/sign-up-page': join(currentPath, './views/pages/sign-up-page.ts')
+      './locales/en': join(clientPath, '../locales/en.ts'),
+      './locales/ru': join(clientPath, '../locales/ru.ts'),
+      './locales/kz': join(clientPath, '../locales/kz.ts'),
+      './main': join(clientPath, 'main.ts'),
+      './views/layouts/main-layout': join(clientPath, './views/layouts/main-layout.ts'),
+      './views/home-page': join(clientPath, './views/pages/home-page.ts'),
+      './views/sign-in-page': join(clientPath, './views/pages/sign-in-page.ts'),
+      './views/sign-up-page': join(clientPath, './views/pages/sign-up-page.ts')
     },
-    outdir: join(currentPath, `../../public/dist/${VERSION}/js`),
+    outdir: join(clientPath, `../../public/dist/${version}/js`),
     format: 'esm',
     target: 'esnext',
     bundle: true,
@@ -88,8 +87,8 @@ export async function createBundles() {
       'sass',
       dev ? '--style=expanded' : '--style=compressed',
       dev ? '--source-map' : '--no-source-map',
-      join(currentPath, 'styles/main.scss'),
-      join(currentPath, `../../public/dist/${VERSION}/css/main.css`)
+      join(clientPath, 'styles/main.scss'),
+      join(clientPath, `../../public/dist/${version}/css/main.css`)
     ]
   })
   

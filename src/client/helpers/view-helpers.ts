@@ -21,14 +21,16 @@ export function hideSplash() {
 }
 
 export function getExistingLayout(layouts: string[]) {
+  const reverseLayouts = [...layouts].reverse();
+
   let layout: BaseLayout = DefaultLayout.instance;
 
-  for(const layoutName of layouts) {
-    if(layoutName in globalLayouts) {
-      layout = globalLayouts[layoutName];
-
+  for(const layoutName of reverseLayouts) {
+    if(!(layoutName in globalLayouts) || layout['content'] !== globalLayouts[layoutName]) {      
       break;
     }
+
+    layout = globalLayouts[layoutName];
   }
 
   return layout;

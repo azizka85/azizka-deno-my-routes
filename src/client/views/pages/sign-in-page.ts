@@ -103,7 +103,7 @@ export class SignInPage implements View {
     this.cancelBtn?.removeEventListener('click', this.cancelBtnClickHandler);
   }
 
-  async load(lang: string , page: Page, firstLoad: boolean): Promise<void> {
+  async load(lang: string, page: Page, firstLoad: boolean): Promise<void> {
     if(this.titleElem) {
       this.titleElem.textContent = context.tr('Sign In');
     }

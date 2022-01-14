@@ -20,16 +20,17 @@ html, body {
 }
 
 .main-card {
-  max-width: variables.$main-card-max-width;
-  margin: 
-    variables.$main-card-margin-top
-    variables.$main-card-margin-horizontal
-    variables.$main-card-margin-bottom;
+  display: flex;
+  align-items: center;
+  justify-content: center;    
 
   &-body {
+    width: variables.$main-card-width;
+    min-width: variables.$main-card-min-width;
     margin: 
-      variables.$main-card-body-margin-vertical
-      variables.$main-card-body-margin-horizontal;
+      variables.$main-card-body-margin-top
+      variables.$main-card-body-margin-horizontal
+      variables.$main-card-body-margin-bottom;
   }
 
   &-service-icon {

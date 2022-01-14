@@ -17,17 +17,17 @@
   outline: none;
   user-select: none;
   border-radius: variables.$border-radius;
-  box-shadow: global-functions.property(btn-box-shadow, variables.$box-shadow);
+  box-shadow: global-functions.property(box-shadow-sm, global-variables.$box-shadow-sm);
   padding: 0 variables.$padding-horizontal;
   text-decoration: none;
   transition: box-shadow 250ms linear;
 
   &:hover, &:focus {
-    box-shadow: global-functions.property(btn-box-shadow-hover, variables.$box-shadow-hover);
+    box-shadow: global-functions.property(box-shadow, global-variables.$box-shadow);
   }
 
   &:active {
-    box-shadow: global-functions.property(box-shadow, global-variables.$box-shadow);
+    box-shadow: global-functions.property(box-shadow-lg, global-variables.$box-shadow-lg);
   }
 
   &:disabled {

@@ -18,7 +18,12 @@
   margin: auto;
   border-radius: variables.$border-radius;  
   background-color: global-functions.property(opacity-30-background, global-theme.$opacity-30-background);
-  transition: color 200ms linear, background-color 200ms linear, width 200ms linear;    
+  transition: 
+    color 250ms linear, 
+    background-color 250ms linear, 
+    width 250ms linear,
+    box-shadow 250ms linear,
+    height 250ms linear;    
 
   form {
     height: variables.$height;
@@ -61,17 +66,16 @@
   }   
 
   &-list {
-    max-height: 0;
-    overflow-y: hidden;
-    transition: max-height 200ms linear;
+    height: 0;
+    overflow-y: hidden;    
   }
 
   &-focus {
     color: global-functions.property(text-background, global-theme.$text-background);
     background-color: global-functions.property(background, global-variables.$background); 
     box-shadow: global-functions.property(box-shadow, global-variables.$box-shadow);
-    height: unset;
     width: calc(100% - variables.$margin-min);
+    height: calc(variables.$height + variables.$list-height);
     z-index: app-bar-variables.$z-index + 5;
 
     .search-icon {
@@ -83,8 +87,7 @@
     }
 
     .search-list {
-      max-height: 100vh;
-      overflow-y: auto;
+      height: variables.$list-height;
     }
   }
 }

@@ -66,11 +66,12 @@ export async function checkStaticResponse(page: Page<RouteOptions, RouteState>, 
       const stat = await Deno.stat(path);
   
       if(stat.isFile) {
-        const readableStream = readableStreamFromReader(
-          await Deno.open(path)
-        );
+        const file = await Deno.open(path);
+
+        const readableStream = readableStreamFromReader(file);
   
         page.state.response = new Response(readableStream);
+        page.state.file = file;
   
         checkJSContentType(path, page.state.response.headers) ||
         checkSVGContentType(path, page.state.response.headers) ||

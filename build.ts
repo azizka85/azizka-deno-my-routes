@@ -1,3 +1,5 @@
-import { createBundles } from './src/client/bundler.ts';
+import { createBundles } from './src/compiler/bundler.ts';
 
-await createBundles();
+import { VERSION } from './src/globals.ts';
+
+await createBundles(false, VERSION);

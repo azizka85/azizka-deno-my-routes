@@ -11,10 +11,10 @@ export class AuthServiceComponent implements Component {
 
   protected githubBtn: HTMLElement | null = null;
 
-  async init(page: View, firstTime: boolean) {
-    this.titleElem = page.elem?.querySelector('[data-title="auth-service"]') || null;
+  async init(view: View, firstTime: boolean) {
+    this.titleElem = view.elem?.querySelector('[data-title="auth-service"]') || null;
 
-    this.githubBtn = page.elem?.querySelector('[data-button="auth-service-github"]') || null;
+    this.githubBtn = view.elem?.querySelector('[data-button="auth-service-github"]') || null;
   }
   
   async load(lang: string, page: Page, firstLoad: boolean) {

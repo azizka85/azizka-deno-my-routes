@@ -10,7 +10,7 @@ export interface Listener {
 }
 
 export interface Component extends Listener {
-  init(page: View, firstTime: boolean): Promise<void>;
+  init(view: View, firstTime: boolean): Promise<void>;
 
   mount?(): Promise<void>;
   unmount?(): Promise<void>;

@@ -1,6 +1,10 @@
-import { createBundles } from './src/client/bundler.ts';
+import { createBundles } from './src/compiler/bundler.ts';
 import { start } from './src/server/main.ts';
 
-await createBundles();
+import { VERSION } from './src/globals.ts';
+
+import { dev } from './src/server/init-environment.ts';
+
+await createBundles(dev, VERSION);
 
 start();

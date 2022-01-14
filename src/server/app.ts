@@ -18,8 +18,6 @@ import { checkStaticResponse } from './utils.ts';
 
 import { PAGE_ROOT } from '../globals.ts';
 
-import { dev } from './init-environment.ts';
-
 const app = new Router<RouteOptions, RouteState>({
   root: PAGE_ROOT,
   async page404(page) {
@@ -45,24 +43,10 @@ const app = new Router<RouteOptions, RouteState>({
         page.fragment
       );         
 
-      if(await checkStaticResponse(page, path))          {
+      if(await checkStaticResponse(page, path)) {
         return true;
-      }
-
-      if(dev) {
-        const sourcePath = join(
-          dirname(
-            fromFileUrl(import.meta.url)
-          ), 
-          '../..', 
-          page.fragment
-        );  
-
-        if(await checkStaticResponse(page, sourcePath)) {
-          return true;
-        }
-      }
-    }
+      }      
+    }        
 
     return false;
   }  

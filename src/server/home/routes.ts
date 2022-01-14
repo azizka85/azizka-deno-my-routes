@@ -17,8 +17,8 @@ routes.push({
   rule: `${localeRoute}/?`,
   async handler(page) {
     if(page.state) {
-      const lang = page.match?.[0] || DEFAULT_LANGUAGE;      
-
+      const lang = page.match?.[0] || DEFAULT_LANGUAGE;            
+      
       const data = {
         time: Date.now()
       };

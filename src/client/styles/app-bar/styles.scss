@@ -14,7 +14,7 @@
   box-sizing: border-box;
   z-index: variables.$z-index;
   transform: translateY(0);
-  transition: transform 200ms linear, box-shadow 200ms linear;
+  transition: transform 250ms linear, box-shadow 250ms linear;
 
   &-hide {
     transform: translateY(-100%);

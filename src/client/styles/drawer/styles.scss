@@ -22,9 +22,8 @@
   flex-shrink: 0;
   box-sizing: border-box;
   height: 100vh;
-  overflow: hidden;  
-  
-  transition: width 250ms linear;
+  overflow: hidden;    
+  transition: width 250ms linear, box-shadow 250ms linear;
 
   &-open {
     border-right-width: 1px;
@@ -205,7 +204,7 @@
           fill: global-functions.property(tint-30-text-background, global-theme.$tint-30-text-background);          
           margin-left: list-variables.$margin-horizontal;
           transform: rotate(0deg);
-          transition: transform 200ms linear;
+          transition: transform 250ms linear;
         }
 
         @keyframes drawer-lang-bar-current-progress {
@@ -248,7 +247,7 @@
         z-index: variables.$z-index + 1;
         max-height: 0;
         opacity: 0;
-        transition: max-height 200ms linear, opacity 200ms linear;
+        transition: max-height 250ms linear, opacity 250ms linear;
         overflow: hidden;
 
         &-item {

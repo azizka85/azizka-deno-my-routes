@@ -1,4 +1,5 @@
 export interface RouteState {
-  request: Request,
-  response?: Response
+  request: Request;
+  response?: Response;
+  file?: Deno.File;
 }
