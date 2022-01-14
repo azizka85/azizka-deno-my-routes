@@ -4,8 +4,6 @@ import { RouteState } from './data/route-state.ts';
 
 import app from './app.ts';
 
-import { dev } from './init-environment.ts';
-
 import { VERSION } from '../globals.ts';
 
 Deno.test('should load static file "favicon.png" correctly', async () => {
@@ -104,35 +102,6 @@ Deno.test(`should load static file "dist/${VERSION}/css/main.css" correctly`, as
     'text/css; charset=UTF-8',
     `Content-Type should be "text/css; charset=UTF-8" but we have "${state.response.headers.get('Content-Type')}"`
   );
-
-  state.file?.close();
-});
-
-Deno.test(`should load source file "src/globals.ts" correctly`, async () => {
-  const state = {
-    request: {}
-  } as RouteState;
-
-  await app.processUrl('src/globals.ts', {}, state);
-
-  assertExists(
-    state.response,
-    'response should be exist'
-  );
-
-  if(dev) {
-    assertEquals(
-      state.response.status,
-      200,
-      `response status should be 200 but we have ${state.response.status}`
-    );
-  } else {
-    assertEquals(
-      state.response.status,
-      404,
-      `response status should be 404 but we have ${state.response.status}`
-    );
-  }
 
   state.file?.close();
 });

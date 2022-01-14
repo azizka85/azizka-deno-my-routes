@@ -3,8 +3,6 @@ import { start } from './src/server/main.ts';
 
 import { VERSION } from './src/globals.ts';
 
-import { dev } from './src/server/init-environment.ts';
-
-await createBundles(dev, VERSION);
+await createBundles(true, VERSION);
 
 start();

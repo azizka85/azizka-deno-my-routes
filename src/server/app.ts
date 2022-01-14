@@ -18,6 +18,8 @@ import { checkStaticResponse } from './utils.ts';
 
 import { PAGE_ROOT } from '../globals.ts';
 
+import './init-environment.ts';
+
 const app = new Router<RouteOptions, RouteState>({
   root: PAGE_ROOT,
   async page404(page) {

@@ -10,5 +10,3 @@ await load({
   path: join(currentPath, '../../.env'),
   ignoreMissingFile: true
 });
-
-export const dev = Deno.env.get('DENO_ENV') !== 'production';
